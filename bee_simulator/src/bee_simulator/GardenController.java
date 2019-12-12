@@ -26,7 +26,6 @@ public class GardenController {
         theGarden.setPrefWidth(900);
         theGarden.setPrefHeight(700);
         beeImage = new ImageView(new Image("file:bee-1.jpg"));
-        beeImage = new ImageView(new Image("file:garden_jpgs/bee-1.jpg"));
         beeImage.setPreserveRatio(true);    // ensure ratio preserved when scaling the bee
         beeImage.setFitWidth(50.0);         // scale bee to be a reasonable size
         beeXLocation = beeYLocation = 400;                  // initial location of bee; for your solution, capture this in an object
