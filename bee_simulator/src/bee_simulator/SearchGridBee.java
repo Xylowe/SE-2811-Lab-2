@@ -21,13 +21,13 @@ public class SearchGridBee extends AbstractBee {
     public SearchGridBee(double xLocation, double yLocation) {
         super(xLocation, yLocation);
     }
-    
+
     /**
      * A single time unit progressed and the bees locations have been updated.
      *
      * @param onFlower true is the bee is at a flower
      */
-    public void timeProgressed(boolean onFlower) {
+    public void timeProgressed(boolean onFlower){
         //todo
     }
 }
