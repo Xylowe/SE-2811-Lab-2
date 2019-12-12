@@ -71,6 +71,7 @@ public class GardenController {
 
     //When Right arrow is pushed time advances i.e. the bees move
     //So every bee in bees invokes move() or it's equivalent
+
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
