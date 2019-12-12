@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("bee_simulator.fxml"));
         primaryStage.setTitle("Bee Runner 2049");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,900,700));
         primaryStage.show();
     }
 

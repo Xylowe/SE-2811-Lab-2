@@ -7,6 +7,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class GardenController {
 
     private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
@@ -21,12 +23,29 @@ public class GardenController {
         // note the label has a Z index of 2 so it is drawn above the panel, otherwise it may be displayed "under" the panel and not be visible
         theGarden.setStyle("-fx-background-color: linear-gradient(to bottom right, derive(forestgreen, 20%), derive(forestgreen, -40%));");
         // load image from a file; the file needs to be in the top folder of the project
+        theGarden.setPrefWidth(900);
+        theGarden.setPrefHeight(700);
         beeImage = new ImageView(new Image("file:bee-1.jpg"));
         beeImage.setPreserveRatio(true);    // ensure ratio preserved when scaling the bee
         beeImage.setFitWidth(50.0);         // scale bee to be a reasonable size
-        beeXLocation = beeYLocation = 100;                  // initial location of bee; for your solution, capture this in an object
+        beeXLocation = beeYLocation = 400;                  // initial location of bee; for your solution, capture this in an object
         theGarden.getChildren().add(beeImage); // place bee on the panel
         displayBee();
+
+        //Creates an array list of Abstract flowers
+        ArrayList<AbstractFlower> flowers = new ArrayList<>();
+
+        //Adds a GoodFlower to flowers
+        flowers.add(new GoodFlower(true, 10));
+
+        //Displays each flower in flowers
+        for(AbstractFlower flower : flowers) {
+            flower.getFlowerImage().setPreserveRatio(true);
+            flower.getFlowerImage().setFitWidth(50.0);
+            theGarden.getChildren().add(flower.getFlowerImage());
+            displayFlower(flower);
+        }
+
         theGarden.setFocusTraversable(true); // ensure garden pane will receive keypresses
     }
 
@@ -45,6 +64,13 @@ public class GardenController {
         beeImage.setLayoutY(beeYLocation);
     }
 
+    private void displayFlower(AbstractFlower flower) {
+        flower.getFlowerImage().setLayoutX(flower.getXLocation());
+        flower.getFlowerImage().setLayoutY(flower.getYLocation());
+    }
+
+    //When Right arrow is pushed time advances i.e. the bees move
+    //So every bee in bees invokes move() or it's equivalent
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
