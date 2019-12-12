@@ -36,7 +36,7 @@ public class GardenController {
         ArrayList<AbstractFlower> flowers = new ArrayList<>();
 
         //Adds a GoodFlower to flowers
-        flowers.add(new GoodFlower(true, 10));
+        flowers.add(new GoodFlower(10, true));
 
         //Displays each flower in flowers
         for(AbstractFlower flower : flowers) {
