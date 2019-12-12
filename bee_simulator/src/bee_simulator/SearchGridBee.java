@@ -8,20 +8,20 @@
 package bee_simulator;
 
 /**
- * Bee that goes directly to the flower
+ * Bee that goes back and forth searching for flowers
  */
-public class StraightToFlowerBee extends AbstractBee {
+public class SearchGridBee extends AbstractBee {
 
     /**
-     * Constructor for the bee that flies directly to the flower
+     * Constructor for the bee that flies back and forth searching for flowers
      *
      * @param xLocation starting x location of the bee
      * @param yLocation starting y location of the bee
      */
-    public StraightToFlowerBee(double xLocation, double yLocation) {
+    public SearchGridBee(double xLocation, double yLocation) {
         super(xLocation, yLocation);
     }
-
+    
     /**
      * A single time unit progressed and the bees locations have been updated.
      *
