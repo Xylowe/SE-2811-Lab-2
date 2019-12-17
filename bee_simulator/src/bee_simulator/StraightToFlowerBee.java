@@ -11,6 +11,7 @@ package bee_simulator;
  * Bee that goes directly to the flower
  */
 public class StraightToFlowerBee extends AbstractBee {
+    private AbstractFlower flower;
 
     /**
      * Constructor for the bee that flies directly to the flower
@@ -29,5 +30,14 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public void timeProgressed(boolean onFlower) {
         //todo
+    }
+
+    /**
+     * Updates the bee's target flower
+     *
+     * @param flower the flower to target
+     */
+    public void targetFlower(AbstractFlower flower) {
+        this.flower = flower;
     }
 }
