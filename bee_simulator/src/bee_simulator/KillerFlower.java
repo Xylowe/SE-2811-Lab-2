@@ -16,22 +16,4 @@ public class KillerFlower extends AbstractFlower {
         return damage;
     }
 
-    @Override
-    public double getXLocation() {
-        return super.getXLocation();
-    }
-
-    public double getYLocation() {
-        return super.getYLocation();
-    }
-
-    @Override
-    public boolean hasNectar() {
-        return super.hasNectar();
-    }
-
-    @Override
-    public int getNectarValue() {
-        return super.getNectarValue();
-    }
 }

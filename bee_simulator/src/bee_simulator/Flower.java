@@ -2,7 +2,8 @@ package bee_simulator;
 
 public interface Flower {
 
-    public double getXLocation();
-    public double getYLocation();
-    public boolean hasNectar();
+    double getXLocation();
+    double getYLocation();
+    boolean hasNectar();
+    int getNectarValue();
 }

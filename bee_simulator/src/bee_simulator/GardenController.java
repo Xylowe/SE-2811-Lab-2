@@ -13,6 +13,7 @@ public class GardenController {
 
     private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
     private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
+    private ArrayList<AbstractFlower> flowers;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -33,10 +34,13 @@ public class GardenController {
         displayBee();
 
         //Creates an array list of Abstract flowers
-        ArrayList<AbstractFlower> flowers = new ArrayList<>();
+        flowers = new ArrayList<>();
 
         //Adds a GoodFlower to flowers
-        flowers.add(new GoodFlower(10, true));
+        flowers.add(new GoodFlower(33, true));
+
+        //Adds a KillerFlower to flowers
+        flowers.add(new KillerFlower(5));
 
         //Displays each flower in flowers
         for(AbstractFlower flower : flowers) {
@@ -75,7 +79,7 @@ public class GardenController {
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
-            beeXLocation += 10.0;
+
         } else if (keyEvent.getCode() == KeyCode.LEFT) {
             beeXLocation -= 10.0;
         } else if (keyEvent.getCode() == KeyCode.DOWN) {
@@ -85,4 +89,24 @@ public class GardenController {
         }
         displayBee();
     }
+
+    /*
+    //Bee collides with something
+    public boolean collision(AbstractBee bee) {
+        boolean collided = false;
+        double buffer = 25.0;
+        double beeXLocationBuffered = bee.getXLocation() + buffer;
+        double beeYLocationBuffered = bee.getYLocation() + buffer;
+
+        for(AbstractFlower flower : flowers) {
+            if(beeXLocationBuffered == flower.getXLocation()) {
+                collided = true;
+                System.out.println(flower.getFlowerImage().toString());
+            } else if(beeYLocationBuffered == flower.getYLocation()) {
+                collided = true;
+                System.out.println(flower.getFlowerImage().toString());
+            }
+        }
+    }
+    */
 }
