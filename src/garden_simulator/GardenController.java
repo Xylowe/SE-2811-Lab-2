@@ -1,3 +1,10 @@
+/*
+ * Course: SE2811
+ * Winter 2019-2020
+ * Lab 2 - The Flowers and the Bees
+ * Name: Trenton Bowser and Matt Aleck
+ * Created 12/12/2019
+ */
 package garden_simulator;
 
 import javafx.fxml.FXML;
@@ -9,6 +16,9 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
+/**
+ * The controller for the FXML window
+ */
 public class GardenController {
 
     private ArrayList<AbstractBee> bees;
@@ -17,6 +27,9 @@ public class GardenController {
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
 
+    /**
+     * Initializes the window
+     */
     @FXML
     public void initialize() {              // executed after scene is loaded but before any methods
         // for fun, set up a gradient background; could probably do in SceneBuilder as well
@@ -34,7 +47,7 @@ public class GardenController {
         flowers.add(new GoodFlower(10, true));
 
         //Displays each flower in flowers
-        for(AbstractFlower flower : flowers) {
+        for (AbstractFlower flower : flowers) {
             flower.getFlowerImage().setPreserveRatio(true);
             flower.getFlowerImage().setFitWidth(50.0);
             theGarden.getChildren().add(flower.getFlowerImage());
@@ -46,7 +59,7 @@ public class GardenController {
         bees.add(new SearchGridBee(200, 200));
 
         // Sets up and displays all bees
-        for(AbstractBee bee : bees) {
+        for (AbstractBee bee : bees) {
             bee.getBeeImage().setPreserveRatio(true);   // ensure ratio preserved when scaling the bee
             bee.getBeeImage().setFitWidth(50.0);        // scale bee to be a reasonable size
             theGarden.getChildren().add(bee.getBeeImage()); // place bee on the panel
@@ -56,7 +69,11 @@ public class GardenController {
         theGarden.setFocusTraversable(true); // ensure garden pane will receive keypresses
     }
 
-    // display the bee at the (beeXLocation, beeYLocation), ensuring the bee does not leave the garden
+    /**
+     * Displays the given bee
+     *
+     * @param bee - bee to display
+     */
     private void displayBee(AbstractBee bee) {
         /*if ( beeXLocation < 0 )
             beeXLocation = 0;
@@ -72,18 +89,25 @@ public class GardenController {
         bee.getBeeImage().setLayoutY(bee.getYLocation());
     }
 
+    /**
+     * Displays the given flower
+     *
+     * @param flower - flower to display
+     */
     private void displayFlower(AbstractFlower flower) {
         flower.getFlowerImage().setLayoutX(flower.getXLocation());
         flower.getFlowerImage().setLayoutY(flower.getYLocation());
     }
 
-    //When Right arrow is pushed time advances i.e. the bees move
-    //So every bee in bees invokes move() or it's equivalent
-
+    /**
+     * When Right arrow is pushed time advances i.e. the bees move
+     *
+     * @param keyEvent - the key pressed
+     */
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
-            for (AbstractBee bee: bees) {
+            for (AbstractBee bee : bees) {
                 bee.timeProgressed();
                 displayBee(bee);
             }
