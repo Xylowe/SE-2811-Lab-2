@@ -8,23 +8,4 @@ public class GoodFlower extends AbstractFlower {
         super(nectarValue, nectar);
         super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.jpg"));
     }
-
-    @Override
-    public double getXLocation() {
-        return super.getXLocation();
-    }
-
-    public double getYLocation() {
-        return super.getYLocation();
-    }
-
-    @Override
-    public boolean hasNectar() {
-        return super.hasNectar();
-    }
-
-    @Override
-    public int getNectarValue() {
-        return super.getNectarValue();
-    }
 }
