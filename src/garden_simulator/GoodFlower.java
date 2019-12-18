@@ -6,7 +6,7 @@ public class GoodFlower extends AbstractFlower {
 
     public GoodFlower(int nectarValue, boolean nectar) {
         super(nectarValue, nectar);
-        super.getFlowerImage().setImage(new Image("file:aster.jpg"));
+        super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.jpg"));
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class GardenController {
 
     private ArrayList<AbstractBee> bees;
-    private ArrayList<AbstractFlower> flowers;
+    protected static ArrayList<AbstractFlower> flowers;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -88,12 +88,5 @@ public class GardenController {
                 displayBee(bee);
             }
         }
-        /*else if (keyEvent.getCode() == KeyCode.LEFT) {
-            beeXLocation -= 10.0;
-        } else if (keyEvent.getCode() == KeyCode.DOWN) {
-            beeYLocation += 10.0;
-        } else if (keyEvent.getCode() == KeyCode.UP) {
-            beeYLocation -= 10.0;
-        }*/
     }
 }

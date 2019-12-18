@@ -23,7 +23,7 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public StraightToFlowerBee(double xLocation, double yLocation) {
         super(xLocation, yLocation);
-        super.getBeeImage().setImage(new Image("file:bee-1.jpg"));
+        super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-1.jpg"));
     }
 
     /**
