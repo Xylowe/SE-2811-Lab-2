@@ -7,14 +7,17 @@
  */
 package garden_simulator;
 
+import javafx.scene.image.ImageView;
+
 /**
  * Abstract bee that implements the bee interface
  */
 public abstract class AbstractBee implements Bee {
-    private double xLocation;
-    private double yLocation;
+    protected double xLocation;
+    protected double yLocation;
     private double energy;
     private boolean dead;
+    private ImageView beeImage;
 
     /**
      * Constructor for the abstract bee
@@ -27,6 +30,7 @@ public abstract class AbstractBee implements Bee {
         energy = MAX_ENERGY;
         this.xLocation = xLocation;
         this.yLocation = yLocation;
+        this.beeImage = new ImageView();
     }
 
     /**
@@ -48,11 +52,18 @@ public abstract class AbstractBee implements Bee {
     }
 
     /**
-     * A single time unit progressed and the bees locations have been updated.
+     * Returns the bee ImageView associated with the bee, can be set to the bees image
      *
-     * @param onFlower true is the bee is at a flower
+     * @return the ImageView of the bee
      */
-    public abstract void timeProgressed(boolean onFlower);
+    public ImageView getBeeImage() {
+        return beeImage;
+    }
+
+    /**
+     * A single time unit progressed and the bees locations have been updated.
+     */
+    public abstract void timeProgressed();
 
     /**
      * Returns whether or not the bee is alive

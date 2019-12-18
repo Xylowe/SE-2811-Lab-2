@@ -7,6 +7,8 @@
  */
 package garden_simulator;
 
+import javafx.scene.image.Image;
+
 /**
  * Bee that goes back and forth searching for flowers
  */
@@ -20,14 +22,15 @@ public class SearchGridBee extends AbstractBee {
      */
     public SearchGridBee(double xLocation, double yLocation) {
         super(xLocation, yLocation);
+        super.getBeeImage().setImage(new Image("file:bee-2.jpg"));
     }
 
     /**
      * A single time unit progressed and the bees locations have been updated.
-     *
-     * @param onFlower true is the bee is at a flower
      */
-    public void timeProgressed(boolean onFlower){
+    public void timeProgressed(){
         //todo
+        xLocation+=10;
+        yLocation+=-5;
     }
 }

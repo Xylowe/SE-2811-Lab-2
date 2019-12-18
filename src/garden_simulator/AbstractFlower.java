@@ -15,8 +15,8 @@ abstract class AbstractFlower implements Flower {
     public AbstractFlower(int nectarValue, boolean nectar) {
         this.nectarValue = nectarValue;
         this.nectar = nectar;
-        XLocation = Math.random()*900;
-        YLocation = Math.random()*700;
+        XLocation = Math.random()*850;
+        YLocation = Math.random()*650;
         this.flowerImage = new ImageView();
     }
 

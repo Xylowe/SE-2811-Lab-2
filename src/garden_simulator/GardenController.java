@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class GardenController {
 
-    private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
-    private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
+    private ArrayList<AbstractBee> bees;
+    private ArrayList<AbstractFlower> flowers;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -25,15 +25,10 @@ public class GardenController {
         // load image from a file; the file needs to be in the top folder of the project
         theGarden.setPrefWidth(900);
         theGarden.setPrefHeight(700);
-        beeImage = new ImageView(new Image("file:bee-1.jpg"));
-        beeImage.setPreserveRatio(true);    // ensure ratio preserved when scaling the bee
-        beeImage.setFitWidth(50.0);         // scale bee to be a reasonable size
-        beeXLocation = beeYLocation = 400;                  // initial location of bee; for your solution, capture this in an object
-        theGarden.getChildren().add(beeImage); // place bee on the panel
-        displayBee();
 
-        //Creates an array list of Abstract flowers
-        ArrayList<AbstractFlower> flowers = new ArrayList<>();
+        //Creates an array list of Abstract flowers and bees
+        flowers = new ArrayList<>();
+        bees = new ArrayList<>();
 
         //Adds a GoodFlower to flowers
         flowers.add(new GoodFlower(10, true));
@@ -46,12 +41,24 @@ public class GardenController {
             displayFlower(flower);
         }
 
+        //Adds bees to the bee list
+        bees.add(new StraightToFlowerBee(100, 100));
+        bees.add(new SearchGridBee(200, 200));
+
+        // Sets up and displays all bees
+        for(AbstractBee bee : bees) {
+            bee.getBeeImage().setPreserveRatio(true);   // ensure ratio preserved when scaling the bee
+            bee.getBeeImage().setFitWidth(50.0);        // scale bee to be a reasonable size
+            theGarden.getChildren().add(bee.getBeeImage()); // place bee on the panel
+            displayBee(bee);
+        }
+
         theGarden.setFocusTraversable(true); // ensure garden pane will receive keypresses
     }
 
     // display the bee at the (beeXLocation, beeYLocation), ensuring the bee does not leave the garden
-    private void displayBee() {
-        if ( beeXLocation < 0 )
+    private void displayBee(AbstractBee bee) {
+        /*if ( beeXLocation < 0 )
             beeXLocation = 0;
         else if (theGarden.getWidth() > 0 && beeXLocation > theGarden.getWidth() - 10)
             // note: getWidth() is 0 when first load the scene, so don't relocate the bee in that case
@@ -60,8 +67,9 @@ public class GardenController {
             beeYLocation = 0;
         else if (theGarden.getHeight() > 0 && beeYLocation > theGarden.getHeight() - 10)
             beeYLocation = theGarden.getHeight() - 10;
-        beeImage.setLayoutX(beeXLocation);
-        beeImage.setLayoutY(beeYLocation);
+         */
+        bee.getBeeImage().setLayoutX(bee.getXLocation());
+        bee.getBeeImage().setLayoutY(bee.getYLocation());
     }
 
     private void displayFlower(AbstractFlower flower) {
@@ -75,14 +83,17 @@ public class GardenController {
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
-            beeXLocation += 10.0;
-        } else if (keyEvent.getCode() == KeyCode.LEFT) {
+            for (AbstractBee bee: bees) {
+                bee.timeProgressed();
+                displayBee(bee);
+            }
+        }
+        /*else if (keyEvent.getCode() == KeyCode.LEFT) {
             beeXLocation -= 10.0;
         } else if (keyEvent.getCode() == KeyCode.DOWN) {
             beeYLocation += 10.0;
         } else if (keyEvent.getCode() == KeyCode.UP) {
             beeYLocation -= 10.0;
-        }
-        displayBee();
+        }*/
     }
 }
