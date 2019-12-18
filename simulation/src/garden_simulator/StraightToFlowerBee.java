@@ -5,7 +5,7 @@
  * Name: Trenton Bowser and Matt Aleck
  * Created 12/12/2019
  */
-package bee_simulator;
+package garden_simulator;
 
 /**
  * Bee that goes directly to the flower

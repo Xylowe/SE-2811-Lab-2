@@ -1,12 +1,19 @@
-package bee_simulator;
+package garden_simulator;
 
 import javafx.scene.image.Image;
 
-public class GoodFlower extends AbstractFlower {
+public class KillerFlower extends AbstractFlower {
 
-    public GoodFlower(int nectarValue, boolean nectar) {
-        super(nectarValue, nectar);
-        super.getFlowerImage().setImage(new Image("file:aster.jpg"));
+    private int damage;
+
+    public KillerFlower(int damage) {
+        super(0, false);
+        this.damage = damage;
+        getFlowerImage().setImage(new Image("file:nightshade.jpg"));
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

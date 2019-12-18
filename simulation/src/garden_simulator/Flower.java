@@ -1,4 +1,4 @@
-package bee_simulator;
+package garden_simulator;
 
 public interface Flower {
 
