@@ -8,7 +8,6 @@
 package garden_simulator;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,7 +23,6 @@ public class GardenController {
 
     private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
     private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
-    private ArrayList<AbstractFlower> flowers;
     private ArrayList<AbstractBee> bees;
     protected static ArrayList<AbstractFlower> flowers;
 
