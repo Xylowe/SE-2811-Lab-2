@@ -5,7 +5,7 @@
  * Name: Trenton Bowser and Matt Aleck
  * Created 12/12/2019
  */
-package bee_simulator;
+package garden_simulator;
 
 /**
  * Interface containing all Bee function headers
@@ -29,10 +29,8 @@ public interface Bee {
 
     /**
      * A single time unit progressed and the bees locations have been updated.
-     *
-     * @param onFlower true is the bee is at a flower
      */
-    void timeProgressed(boolean onFlower);
+    void timeProgressed();
 
     /**
      * Returns whether or not the bee is alive

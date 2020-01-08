@@ -5,7 +5,9 @@
  * Name: Trenton Bowser and Matt Aleck
  * Created 12/12/2019
  */
-package bee_simulator;
+package garden_simulator;
+
+import javafx.scene.image.Image;
 
 /**
  * Bee that goes directly to the flower
@@ -21,15 +23,16 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public StraightToFlowerBee(double xLocation, double yLocation) {
         super(xLocation, yLocation);
+        super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-1.jpg"));
     }
 
     /**
      * A single time unit progressed and the bees locations have been updated.
-     *
-     * @param onFlower true is the bee is at a flower
      */
-    public void timeProgressed(boolean onFlower) {
+    public void timeProgressed() {
         //todo
+        xLocation+=10;
+        yLocation+=10;
     }
 
     /**
