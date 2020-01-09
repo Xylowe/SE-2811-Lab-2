@@ -14,25 +14,13 @@ import javafx.scene.image.Image;
  */
 public class KillerFlower extends AbstractFlower {
 
-    private int damage;
-
     /**
      * Constructor for the flower that will drain the energy from a bee
      *
      * @param damage amount of damage the flower will do
      */
     public KillerFlower(int damage) {
-        super(0, false);
-        this.damage = damage;
+        super(damage, true);
         getFlowerImage().setImage(new Image("file:garden_jpgs\\nightshade.jpg"));
-    }
-
-    /**
-     * Returns the amount of damage the flower will inflict
-     *
-     * @return amount of damage
-     */
-    public int getDamage() {
-        return damage;
     }
 }

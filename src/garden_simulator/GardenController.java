@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class GardenController {
 
 
-    private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
+    //private ImageView beeImage;             // image to draw on the panel; not a good domain class name!
     private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
     private ArrayList<AbstractBee> bees;
     protected static ArrayList<AbstractFlower> flowers;
@@ -41,14 +41,12 @@ public class GardenController {
         theGarden.setPrefWidth(900);
         theGarden.setPrefHeight(700);
 
-        //Creates an array list of Abstract flowers
-        flowers = new ArrayList<>();
         //Creates an array list of Abstract flowers and bees
         flowers = new ArrayList<>();
         bees = new ArrayList<>();
 
         //Adds a GoodFlower to flowers
-        flowers.add(new GoodFlower(33, true));
+        flowers.add(new GoodFlower(33));
 
         //Adds a KillerFlower to flowers
         flowers.add(new KillerFlower(5));
@@ -82,7 +80,7 @@ public class GardenController {
      * @param bee - bee to display
      */
     private void displayBee(AbstractBee bee) {
-        /*if ( beeXLocation < 0 )
+        if ( beeXLocation < 0 )
             beeXLocation = 0;
         else if (theGarden.getWidth() > 0 && beeXLocation > theGarden.getWidth() - 10)
             // note: getWidth() is 0 when first load the scene, so don't relocate the bee in that case
@@ -91,7 +89,7 @@ public class GardenController {
             beeYLocation = 0;
         else if (theGarden.getHeight() > 0 && beeYLocation > theGarden.getHeight() - 10)
             beeYLocation = theGarden.getHeight() - 10;
-         */
+
         bee.getBeeImage().setLayoutX(bee.getXLocation());
         bee.getBeeImage().setLayoutY(bee.getYLocation());
     }
@@ -114,37 +112,75 @@ public class GardenController {
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
-
-        } else if (keyEvent.getCode() == KeyCode.LEFT) {
-            beeXLocation -= 10.0;
-        } else if (keyEvent.getCode() == KeyCode.DOWN) {
-            beeYLocation += 10.0;
-        } else if (keyEvent.getCode() == KeyCode.UP) {
-            beeYLocation -= 10.0;
             for (AbstractBee bee : bees) {
                 bee.timeProgressed();
+                collision(bee);
+                hitBorder();
+                displayBee(bee);
+            }
+        } else if (keyEvent.getCode() == KeyCode.LEFT) {
+            for(AbstractBee bee : bees) {
+                bee.xLocation -= 10.0;
+                collision(bee);
+                hitBorder();
+                displayBee(bee);
+            }
+        } else if (keyEvent.getCode() == KeyCode.DOWN) {
+            for(AbstractBee bee : bees) {
+                bee.yLocation += 10.0;
+                collision(bee);
+                hitBorder();
+                displayBee(bee);
+            }
+        } else if (keyEvent.getCode() == KeyCode.UP) {
+            for (AbstractBee bee : bees) {
+                bee.yLocation -= 10.0;
+                collision(bee);
+                hitBorder();
                 displayBee(bee);
             }
         }
     }
 
-    /*
-    //Bee collides with something
-    public boolean collision(AbstractBee bee) {
-        boolean collided = false;
-        double buffer = 25.0;
-        double beeXLocationBuffered = bee.getXLocation() + buffer;
-        double beeYLocationBuffered = bee.getYLocation() + buffer;
-
-        for(AbstractFlower flower : flowers) {
-            if(beeXLocationBuffered == flower.getXLocation()) {
-                collided = true;
-                System.out.println(flower.getFlowerImage().toString());
-            } else if(beeYLocationBuffered == flower.getYLocation()) {
-                collided = true;
-                System.out.println(flower.getFlowerImage().toString());
+    private void hitBorder() {
+        int yMax = 655; //Bee images are 45 high
+        int xMax = 850; //Bee images are 50 wide
+        int min = 0;
+        for(AbstractBee bee : bees) {
+            if(bee.getXLocation() >= xMax) {
+                bee.xLocation = xMax;
+            } else if(bee.getXLocation() <= min) {
+                bee.xLocation = min;
+            }
+            if(bee.getYLocation() >= yMax) {
+                bee.yLocation = yMax;
+            } else if(bee.getYLocation() <= min) {
+                bee.yLocation = min;
             }
         }
     }
-    */
+
+    //Bee collides with something
+    private void collision(AbstractBee bee) {
+        double collisionDistance = 30;
+        double heightBuffer = 45.0;
+        double widthBuffer = 50.0;
+        double beeXLocationCenter = bee.getXLocation() + widthBuffer/2;
+        double beeYLocationCenter = bee.getYLocation() - heightBuffer/2;
+
+        for(AbstractFlower flower : flowers) {
+            double flowerXLocationCenter = flower.getXLocation() + widthBuffer/2;
+            double flowerYLocationCenter = flower.getYLocation() - heightBuffer/2;
+            double distance = Math.sqrt(Math.pow((beeXLocationCenter - flowerXLocationCenter), 2) +
+                    Math.pow((beeYLocationCenter - flowerYLocationCenter), 2));
+            if(distance < collisionDistance) {
+                System.out.println(bee.getEnergy());
+                if(flower.hasNectar()) {
+                    bee.addEnergy(flower.getNectarValue());
+                    flower.setNectar(false);
+                }
+                System.out.println(bee.getEnergy() + "\n");
+            }
+        }
+    }
 }

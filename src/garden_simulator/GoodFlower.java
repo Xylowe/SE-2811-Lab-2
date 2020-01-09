@@ -20,8 +20,8 @@ public class GoodFlower extends AbstractFlower {
      * @param nectarValue - amount of nectar
      * @param nectar      - true if the flower has nectar remaining
      */
-    public GoodFlower(int nectarValue, boolean nectar) {
-        super(nectarValue, nectar);
+    public GoodFlower(int nectarValue) {
+        super(nectarValue, true);
         super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.jpg"));
     }
 }

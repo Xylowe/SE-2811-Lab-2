@@ -52,6 +52,10 @@ abstract class AbstractFlower implements Flower {
         return nectar;
     }
 
+    public void setNectar(boolean nectar) {
+        this.nectar = nectar;
+    }
+
     public ImageView getFlowerImage() {
         return flowerImage;
     }
