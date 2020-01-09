@@ -100,4 +100,17 @@ public abstract class AbstractBee implements Bee {
             dead = true;
         }
     }
+
+    /**
+     * Calculates the Euclidean distance between the bee and the given object coordinates
+     *
+     * @param x - the objects x coordinate
+     * @param y - the objects y coordinate
+     * @return the distance between the bee and the object
+     */
+    public double getDistance(double x, double y) {
+        double xDifference = Math.abs(xLocation - x);
+        double yDifference = Math.abs(yLocation - y);
+        return Math.sqrt((xDifference * xDifference) + (yDifference * yDifference));
+    }
 }

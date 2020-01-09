@@ -31,8 +31,17 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public void timeProgressed() {
         //todo
-        xLocation+=10;
-        yLocation+=10;
+        int numFlowers = GardenController.flowers.size();
+        if(flower == null) {
+            flower = GardenController.flowers.get((int) (Math.random() * numFlowers));
+        }
+        //todo if on flower do not move and get energy
+        if (getDistance(flower.getXLocation(), flower.getYLocation()) >= 25) {
+            if (xLocation > flower.getXLocation()) {
+                xLocation = -10;
+            }
+            yLocation += 10;
+        }
     }
 
     /**

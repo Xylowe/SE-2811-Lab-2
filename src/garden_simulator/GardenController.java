@@ -25,6 +25,8 @@ public class GardenController {
     private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
     private ArrayList<AbstractBee> bees;
     protected static ArrayList<AbstractFlower> flowers;
+    protected final int width = 900;
+    protected final int height = 700;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -38,8 +40,8 @@ public class GardenController {
         // note the label has a Z index of 2 so it is drawn above the panel, otherwise it may be displayed "under" the panel and not be visible
         theGarden.setStyle("-fx-background-color: linear-gradient(to bottom right, derive(forestgreen, 20%), derive(forestgreen, -40%));");
         // load image from a file; the file needs to be in the top folder of the project
-        theGarden.setPrefWidth(900);
-        theGarden.setPrefHeight(700);
+        theGarden.setPrefWidth(width);
+        theGarden.setPrefHeight(height);
 
         //Creates an array list of Abstract flowers
         flowers = new ArrayList<>();
