@@ -14,7 +14,7 @@ import java.lang.Math;
 /**
  * Abstract flower that implements the flower interface
  */
-abstract class AbstractFlower implements Flower {
+public abstract class AbstractFlower implements Flower {
 
     private int nectarValue;
     private boolean nectar;
@@ -31,8 +31,8 @@ abstract class AbstractFlower implements Flower {
     public AbstractFlower(int nectarValue, boolean nectar) {
         this.nectarValue = nectarValue;
         this.nectar = nectar;
-        XLocation = Math.random() * 850;
-        YLocation = Math.random() * 650;
+        XLocation = Math.random() * GardenController.width;
+        YLocation = Math.random() * GardenController.height;
         this.flowerImage = new ImageView();
     }
 
