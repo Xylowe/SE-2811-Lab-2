@@ -56,7 +56,10 @@ public class StraightToFlowerBee extends AbstractBee {
                 updateLocations((moveDistance * ratio),(moveDistance * (1 - ratio)));
             }
         } else {
-            //todo get energy and update flower
+            // Resets the flower if the current flower is out of nectar
+            if (!flower.hasNectar()) {
+                flower = null;
+            }
         }
         // Loss of energy due to time
         addEnergy(-2);

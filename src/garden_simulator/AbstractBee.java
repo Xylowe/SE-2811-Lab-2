@@ -26,8 +26,8 @@ public abstract class AbstractBee implements Bee {
     public AbstractBee() {
         dead = false;
         energy = MAX_ENERGY;
-        xLocation = Math.random() * GardenController.width;
-        yLocation = Math.random() * GardenController.height;
+        xLocation = Math.random() * (GardenController.width - 50);
+        yLocation = Math.random() * (GardenController.height - 45);
         this.beeImage = new ImageView();
     }
 
