@@ -27,10 +27,8 @@ public class StraightToFlowerBee extends AbstractBee {
      * A single time unit progressed and the bees locations have been updated.
      */
     public void timeProgressed() {
-        //todo
-
         // Do nothing if the bee is dead
-        if(isDead()) {
+        if (isDead()) {
             return;
         }
         // initializes flower
@@ -53,7 +51,7 @@ public class StraightToFlowerBee extends AbstractBee {
                         (Math.abs(yLocation - flower.getYLocation()) +
                                 Math.abs(xLocation - flower.getXLocation()));
 
-                updateLocations((moveDistance * ratio),(moveDistance * (1 - ratio)));
+                updateLocations((moveDistance * ratio), (moveDistance * (1 - ratio)));
             }
         } else {
             // Resets the flower if the current flower is out of nectar
@@ -61,7 +59,7 @@ public class StraightToFlowerBee extends AbstractBee {
                 flower = null;
             }
         }
-        // Loss of energy due to time
+        // Loss of energy due to time tick
         addEnergy(-2);
     }
 
@@ -83,15 +81,5 @@ public class StraightToFlowerBee extends AbstractBee {
         } else {
             yLocation = yLocation + yMove;
         }
-    }
-
-
-    /**
-     * Updates the bee's target flower
-     *
-     * @param flower the flower to target
-     */
-    public void targetFlower(AbstractFlower flower) {
-        this.flower = flower;
     }
 }

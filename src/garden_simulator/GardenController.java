@@ -173,8 +173,8 @@ public class GardenController {
         for(AbstractFlower flower : flowers) {
             double flowerXLocationCenter = flower.getXLocation() + widthBuffer/2;
             double flowerYLocationCenter = flower.getYLocation() - heightBuffer/2;
-            double distance = Math.sqrt(Math.pow((beeXLocationCenter - flowerXLocationCenter), 2) +
-                    Math.pow((beeYLocationCenter - flowerYLocationCenter), 2));
+            double distance = bee.getDistance(beeXLocationCenter, beeYLocationCenter,
+                    flowerXLocationCenter, flowerYLocationCenter);
             if(distance < collisionDistance) {
                 System.out.println(bee.getEnergy());
                 if(flower.hasNectar()) {
