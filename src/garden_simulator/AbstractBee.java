@@ -15,21 +15,19 @@ import javafx.scene.image.ImageView;
 public abstract class AbstractBee implements Bee {
     protected double xLocation;
     protected double yLocation;
+    protected final double moveDistance = 16;
     private double energy;
     private boolean dead;
     private ImageView beeImage;
 
     /**
      * Constructor for the abstract bee
-     *
-     * @param xLocation starting x location of the bee
-     * @param yLocation starting y location of the bee
      */
-    public AbstractBee(double xLocation, double yLocation) {
+    public AbstractBee() {
         dead = false;
         energy = MAX_ENERGY;
-        this.xLocation = xLocation;
-        this.yLocation = yLocation;
+        xLocation = Math.random() * GardenController.width;
+        yLocation = Math.random() * GardenController.height;
         this.beeImage = new ImageView();
     }
 

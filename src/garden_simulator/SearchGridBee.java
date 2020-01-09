@@ -16,12 +16,9 @@ public class SearchGridBee extends AbstractBee {
 
     /**
      * Constructor for the bee that flies back and forth searching for flowers
-     *
-     * @param xLocation starting x location of the bee
-     * @param yLocation starting y location of the bee
      */
-    public SearchGridBee(double xLocation, double yLocation) {
-        super(xLocation, yLocation);
+    public SearchGridBee() {
+        super();
         super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-2.jpg"));
     }
 

@@ -17,12 +17,9 @@ public class StraightToFlowerBee extends AbstractBee {
 
     /**
      * Constructor for the bee that flies directly to the flower
-     *
-     * @param xLocation starting x location of the bee
-     * @param yLocation starting y location of the bee
      */
-    public StraightToFlowerBee(double xLocation, double yLocation) {
-        super(xLocation, yLocation);
+    public StraightToFlowerBee() {
+        super();
         super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-1.jpg"));
     }
 
@@ -31,18 +28,60 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public void timeProgressed() {
         //todo
+
+        // Do nothing if the bee is dead
+        if(isDead()) {
+            return;
+        }
+        // initializes flower
         int numFlowers = GardenController.flowers.size();
-        if(flower == null) {
+        if (flower == null) {
             flower = GardenController.flowers.get((int) (Math.random() * numFlowers));
         }
-        //todo if on flower do not move and get energy
-        if (getDistance(flower.getXLocation(), flower.getYLocation()) >= 25) {
-            if (xLocation > flower.getXLocation()) {
-                xLocation = -10;
+
+        if (getDistance(flower.getXLocation(), flower.getYLocation()) >= moveDistance) {
+            // Uses the ratios to calculate and update the locations
+            if (Math.abs(yLocation - flower.getYLocation()) == 0) {
+                // Edge case where the bee is lined up in the Y direction
+                updateLocations(moveDistance, 0);
+            } else if (Math.abs(xLocation - flower.getXLocation()) == 0) {
+                // Edge case where the bee is lined up in the X direction
+                updateLocations(0, moveDistance);
+            } else {
+                // The normal cases, ratios are created to help calculate the distance
+                double ratio = Math.abs(xLocation - flower.getXLocation()) /
+                        (Math.abs(yLocation - flower.getYLocation()) +
+                                Math.abs(xLocation - flower.getXLocation()));
+
+                updateLocations((moveDistance * ratio),(moveDistance * (1 - ratio)));
             }
-            yLocation += 10;
+        } else {
+            //todo get energy and update flower
+        }
+        // Loss of energy due to time
+        addEnergy(-2);
+    }
+
+    /**
+     * Updates the bees location
+     *
+     * @param xMove - addition to x dimension
+     * @param yMove - addition to y dimension
+     */
+    private void updateLocations(double xMove, double yMove) {
+        if (xLocation > flower.getXLocation()) {
+            xLocation = xLocation - xMove;
+        } else {
+            xLocation = xLocation + xMove;
+        }
+
+        if (yLocation > flower.getYLocation()) {
+            yLocation = yLocation - yMove;
+        } else {
+            yLocation = yLocation + yMove;
         }
     }
+
 
     /**
      * Updates the bee's target flower
