@@ -21,6 +21,6 @@ public class KillerFlower extends AbstractFlower {
      */
     public KillerFlower(int damage) {
         super(damage, true);
-        getFlowerImage().setImage(new Image("file:garden_jpgs\\nightshade.jpg"));
+        getFlowerImage().setImage(new Image("file:garden_jpgs\\nightshade.png"));
     }
 }
