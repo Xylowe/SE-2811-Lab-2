@@ -19,8 +19,8 @@ public class KillerFlower extends AbstractFlower {
      *
      * @param damage amount of damage the flower will do
      */
-    public KillerFlower(int damage) {
-        super(damage, true);
+    public KillerFlower(int damage, int nectarPool) {
+        super(-damage, nectarPool, true);
         getFlowerImage().setImage(new Image("file:garden_jpgs\\nightshade.png"));
     }
 }

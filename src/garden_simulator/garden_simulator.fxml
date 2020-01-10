@@ -13,6 +13,8 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane id="theGarden" fx:id="theGarden" prefHeight="600.0" prefWidth="600.0" />
+      <Pane id="theGarden" fx:id="theGarden" prefHeight="600.0" prefWidth="600.0">
+         <children>
+         </children></Pane>
    </children>
 </GridPane>

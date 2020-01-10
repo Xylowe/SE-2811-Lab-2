@@ -27,6 +27,8 @@ public class GardenController {
     protected static ArrayList<AbstractFlower> flowers;
     protected static final int width = 900;
     protected static final int height = 700;
+    private static final int TOTAL_FLOWERS = 10;
+    private static final int TOTAL_BEES = 4;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -47,11 +49,29 @@ public class GardenController {
         flowers = new ArrayList<>();
         bees = new ArrayList<>();
 
+        //Adds TOTAL_FLOWERS number of flowers to the flowers list, randomly chosen as Good or Killer
+        for(int i = 0; i < TOTAL_FLOWERS; i++) {
+            if(zeroOrOne() == 0) {
+                flowers.add(new GoodFlower(10, 60));
+            } else {
+                flowers.add(new KillerFlower(10, 30));
+            }
+        }
+
+        //Adds TOTAL_BEEs number of bees to the bees list, randomly chosen as StraightToFlower or SearchGrid
+        for(int i = 0; i < TOTAL_BEES; i++) {
+            if(zeroOrOne() == 0) {
+                bees.add(new StraightToFlowerBee());
+            } else {
+                bees.add(new SearchGridBee());
+            }
+        }
+
         //Adds a GoodFlower to flowers
-        flowers.add(new GoodFlower(33));
+        //flowers.add(new GoodFlower(10, 60));
 
         //Adds a KillerFlower to flowers
-        flowers.add(new KillerFlower(5));
+        //flowers.add(new KillerFlower(10, 30));
 
         //Displays each flower in flowers
         for (AbstractFlower flower : flowers) {
@@ -62,8 +82,8 @@ public class GardenController {
         }
 
         //Adds bees to the bee list
-        bees.add(new StraightToFlowerBee());
-        bees.add(new SearchGridBee());
+        //bees.add(new StraightToFlowerBee());
+        //bees.add(new SearchGridBee());
 
         // Sets up and displays all bees
         for (AbstractBee bee : bees) {
@@ -115,7 +135,8 @@ public class GardenController {
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
             for (AbstractBee bee : bees) {
-                bee.timeProgressed();
+                //bee.timeProgressed();
+                bee.xLocation += 10.0;
                 collision(bee);
                 hitBorder();
                 displayBee(bee);
@@ -164,7 +185,7 @@ public class GardenController {
 
     //Bee collides with something
     private void collision(AbstractBee bee) {
-        double collisionDistance = 30;
+        double collisionDistance = 16;
         double heightBuffer = 45.0;
         double widthBuffer = 50.0;
         double beeXLocationCenter = bee.getXLocation() + widthBuffer/2;
@@ -176,13 +197,33 @@ public class GardenController {
             double distance = bee.getDistance(beeXLocationCenter, beeYLocationCenter,
                     flowerXLocationCenter, flowerYLocationCenter);
             if(distance < collisionDistance) {
-                System.out.println(bee.getEnergy());
-                if(flower.hasNectar()) {
+                if(flower.getNectarPool() > 0) {
                     bee.addEnergy(flower.getNectarValue());
+                    flower.setNectarPool(flower.getNectarPool() - flower.getNectarValue());
+                } else {
                     flower.setNectar(false);
                 }
-                System.out.println(bee.getEnergy() + "\n");
             }
         }
+
+        for(AbstractBee b : bees) {
+            double bXLocationCenter = b.getXLocation() + widthBuffer/2;
+            double bYLocationCenter = b.getYLocation() + heightBuffer/2;
+            double distance = b.getDistance(beeXLocationCenter, beeYLocationCenter,
+                    bXLocationCenter, bYLocationCenter);
+            double sameBeeDistance = b.getDistance(bee.getXLocation(), bee.getYLocation(),
+                    b.getXLocation(), b.getYLocation());
+
+            System.out.println("Before: " + bee.getEnergy());
+            if(distance < collisionDistance && sameBeeDistance != 0.0) {
+                b.addEnergy(-2);
+                bee.addEnergy(-2);
+            }
+            System.out.println("After: " + bee.getEnergy() + "\n");
+        }
+    }
+
+    private int zeroOrOne() {
+        return (int) (Math.random() * 2);
     }
 }

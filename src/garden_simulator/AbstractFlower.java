@@ -18,6 +18,7 @@ public abstract class AbstractFlower implements Flower {
 
     private int nectarValue;
     private boolean nectar;
+    private int nectarPool;
     private double XLocation;
     private double YLocation;
     private ImageView flowerImage;
@@ -28,8 +29,9 @@ public abstract class AbstractFlower implements Flower {
      * @param nectarValue - the amount of nectar
      * @param nectar      - if the flower has nectar
      */
-    public AbstractFlower(int nectarValue, boolean nectar) {
+    public AbstractFlower(int nectarValue, int nectarPool, boolean nectar) {
         this.nectarValue = nectarValue;
+        this.nectarPool = nectarPool;
         this.nectar = nectar;
         XLocation = Math.random() * (GardenController.width - 50);
         YLocation = Math.random() * (GardenController.height - 45);
@@ -38,6 +40,10 @@ public abstract class AbstractFlower implements Flower {
 
     public int getNectarValue() {
         return nectarValue;
+    }
+
+    public int getNectarPool() {
+        return nectarPool;
     }
 
     public double getXLocation() {
@@ -54,6 +60,10 @@ public abstract class AbstractFlower implements Flower {
 
     public void setNectar(boolean nectar) {
         this.nectar = nectar;
+    }
+
+    public void setNectarPool(int nectarPool) {
+        this.nectarPool = nectarPool;
     }
 
     public ImageView getFlowerImage() {
