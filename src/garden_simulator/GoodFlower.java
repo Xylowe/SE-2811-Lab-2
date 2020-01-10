@@ -18,10 +18,9 @@ public class GoodFlower extends AbstractFlower {
      * Constructor for the flower that gives the bees energy
      *
      * @param nectarValue - amount of nectar
-     * @param nectar      - true if the flower has nectar remaining
      */
-    public GoodFlower(int nectarValue) {
-        super(nectarValue, true);
+    public GoodFlower(int nectarValue, int nectarPool) {
+        super(nectarValue, nectarPool, true);
         super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.jpg"));
     }
 }
