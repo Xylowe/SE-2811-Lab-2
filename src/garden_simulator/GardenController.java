@@ -194,9 +194,8 @@ public class GardenController {
         for(AbstractFlower flower : flowers) {
             double flowerXLocationCenter = flower.getXLocation() + widthBuffer/2;
             double flowerYLocationCenter = flower.getYLocation() - heightBuffer/2;
-            double distance = Math.sqrt(Math.pow((beeXLocationCenter - flowerXLocationCenter), 2) +
-                    Math.pow((beeYLocationCenter - flowerYLocationCenter), 2));
-
+            double distance = bee.getDistance(beeXLocationCenter, beeYLocationCenter,
+                    flowerXLocationCenter, flowerYLocationCenter);
             if(distance < collisionDistance) {
                 if(flower.getNectarPool() > 0) {
                     bee.addEnergy(flower.getNectarValue());
@@ -210,10 +209,10 @@ public class GardenController {
         for(AbstractBee b : bees) {
             double bXLocationCenter = b.getXLocation() + widthBuffer/2;
             double bYLocationCenter = b.getYLocation() + heightBuffer/2;
-            double distance = Math.sqrt(Math.pow(beeXLocationCenter - bXLocationCenter, 2) +
-                    Math.pow(beeYLocationCenter - bYLocationCenter, 2));
-            double sameBeeDistance = Math.sqrt(Math.pow(bee.getXLocation() - b.getXLocation(), 2) +
-                    Math.pow(bee.getYLocation() - b.getYLocation(), 2));
+            double distance = b.getDistance(beeXLocationCenter, beeYLocationCenter,
+                    bXLocationCenter, bYLocationCenter);
+            double sameBeeDistance = b.getDistance(bee.getXLocation(), bee.getYLocation(),
+                    b.getXLocation(), b.getYLocation());
 
             System.out.println("Before: " + bee.getEnergy());
             if(distance < collisionDistance && sameBeeDistance != 0.0) {
