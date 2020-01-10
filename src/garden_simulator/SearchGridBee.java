@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 public class SearchGridBee extends AbstractBee {
     private int direction;
     private int tickCount;
+    private boolean onFlower;
 
     /**
      * Constructor for the bee that flies back and forth searching for flowers
@@ -24,6 +25,7 @@ public class SearchGridBee extends AbstractBee {
         super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-2.jpg"));
         direction = -1;
         tickCount = 0;
+        onFlower = false;
     }
 
     /**
@@ -40,37 +42,50 @@ public class SearchGridBee extends AbstractBee {
             tickCount = (int) (Math.random() * 25) + 1;
         }
 
-        //todo check flowers to see if on one and stop
-
-        // moves the bee in the specified direction
-        switch (direction) {
-            case 0:
-                //move right
-                xLocation = xLocation + moveDistance;
-                break;
-            case 1:
-                //move down
-                yLocation = yLocation + moveDistance;
-                break;
-            case 2:
-                //move left
-                xLocation = xLocation - moveDistance;
-                break;
-            case 3:
-                //move up
-                yLocation = yLocation - moveDistance;
-                break;
+        // check flowers to determine if the bee is at one, if so stop on the flower
+        for (AbstractFlower flower : GardenController.flowers) {
+            double distance = getDistance(flower.getXLocation(), flower.getYLocation());
+            if (distance < moveDistance * 2 && flower.hasNectar()) {
+                onFlower = true;
+            }
         }
 
-        // Force opposite direction if on edge
-        if(xLocation < 10 || yLocation < 10) {
-            direction = direction - 2;
-        } else if(xLocation > GardenController.width - 100 || yLocation > GardenController.height - 90) {
-            direction = direction + 2;
+        if(!onFlower) {
+            // moves the bee in the specified direction when not on flower
+            switch (direction) {
+                case 0:
+                    //move right
+                    xLocation = xLocation + moveDistance;
+                    break;
+                case 1:
+                    //move down
+                    yLocation = yLocation + moveDistance;
+                    break;
+                case 2:
+                    //move left
+                    xLocation = xLocation - moveDistance;
+                    break;
+                case 3:
+                    //move up
+                    yLocation = yLocation - moveDistance;
+                    break;
+            }
+
+            // Force opposite direction if on edge for a few ticks
+            if (xLocation < 10 || yLocation < 10) {
+                direction = direction - 2;
+                tickCount = tickCount + 5;
+            } else if (xLocation > GardenController.width - 50 || yLocation > GardenController.height - 45) {
+                direction = direction + 2;
+                tickCount = tickCount + 5;
+            }
+            --tickCount;
+        } else {
+            // Bee stays on the flower and takes in nectar, no movement occurs
+            onFlower = false;
         }
 
-        // Loss of energy due to time tick and updating time tick
-        addEnergy(-2);
-        --tickCount;
+        // Loss of energy due to time tick
+        //addEnergy(-2);
     }
 }

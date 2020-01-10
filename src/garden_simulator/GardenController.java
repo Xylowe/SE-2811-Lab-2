@@ -25,8 +25,8 @@ public class GardenController {
     private double beeXLocation, beeYLocation;  // drawn location of bee; this should be in a domain class
     private ArrayList<AbstractBee> bees;
     protected static ArrayList<AbstractFlower> flowers;
-    protected static final int width = 850;
-    protected static final int height = 650;
+    protected static final int width = 900;
+    protected static final int height = 700;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
