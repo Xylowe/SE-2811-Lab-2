@@ -22,7 +22,7 @@ public class SearchGridBee extends AbstractBee {
      */
     public SearchGridBee() {
         super();
-        super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-2.jpg"));
+        super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-2.png"));
         direction = -1;
         tickCount = 0;
         onFlower = false;

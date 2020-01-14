@@ -21,6 +21,6 @@ public class GoodFlower extends AbstractFlower {
      */
     public GoodFlower(int nectarValue, int nectarPool) {
         super(nectarValue, nectarPool, true);
-        super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.jpg"));
+        super.getFlowerImage().setImage(new Image("file:garden_jpgs\\aster.png"));
     }
 }
