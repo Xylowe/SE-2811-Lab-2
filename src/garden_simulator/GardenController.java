@@ -199,9 +199,12 @@ public class GardenController {
             double distance = bee.getDistance(beeXLocationCenter, beeYLocationCenter,
                     flowerXLocationCenter, flowerYLocationCenter);
             if(distance < collisionDistance) {
-                if(flower.getNectarPool() > 0) {
+                if(flower.getNectarPool() > 0 && flower.getNectarValue() > 0) {
                     bee.addEnergy(flower.getNectarValue());
                     flower.setNectarPool(flower.getNectarPool() - flower.getNectarValue());
+                }else if(flower.getNectarPool() > 0 && flower.getNectarValue() < 0) {
+                    bee.addEnergy(flower.getNectarValue());
+                    flower.setNectarPool(flower.getNectarPool() + flower.getNectarValue());
                 } else {
                     flower.setNectar(false);
                 }

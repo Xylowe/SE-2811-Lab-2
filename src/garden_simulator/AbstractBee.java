@@ -95,6 +95,7 @@ public abstract class AbstractBee implements Bee {
         if (energy > MAX_ENERGY) {
             energy = MAX_ENERGY;
         } else if (energy <= 0) {
+            energy = 0;
             dead = true;
         }
     }
