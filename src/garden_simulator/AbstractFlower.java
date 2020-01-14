@@ -34,7 +34,11 @@ public abstract class AbstractFlower implements Flower {
         this.nectarPool = nectarPool;
         this.nectar = nectar;
         XLocation = Math.random() * (GardenController.width - 50);
-        YLocation = Math.random() * (GardenController.height - 45);
+        if(XLocation > 200) {
+            YLocation = Math.random() * (GardenController.height - 45);
+        } else {
+            YLocation = Math.random() * (GardenController.height - 245);
+        }
         this.flowerImage = new ImageView();
     }
 

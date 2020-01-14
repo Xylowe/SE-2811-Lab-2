@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane alignment="center" hgap="10" onKeyPressed="#onKeyPressed" vgap="10" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_simulator.GardenController">
    <columnConstraints>
@@ -13,8 +19,55 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane id="theGarden" fx:id="theGarden" prefHeight="600.0" prefWidth="600.0">
+      <Pane id="theGarden" fx:id="theGarden" minHeight="700.0" minWidth="900.0" prefHeight="600.0" prefWidth="600.0">
          <children>
+            <AnchorPane layoutY="500.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" layoutX="17.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/aleckm/SE2811/Lab%202/garden_jpgs/bee-1.jpg" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D minX="50.0" minY="45.0" />
+                     </viewport>
+                  </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" layoutX="19.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/aleckm/SE2811/Lab%202/garden_jpgs/aster.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" layoutX="17.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/aleckm/SE2811/Lab%202/garden_jpgs/nightshade.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" layoutX="17.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/aleckm/SE2811/Lab%202/garden_jpgs/bee-2.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="73.0" layoutY="158.0" text="Killer Flower">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="113.0" text="Good Flower">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="68.0" text="GridPattern Bee">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="73.0" layoutY="20.0" text="StraightToFlower Bee">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children></Pane>
    </children>
 </GridPane>

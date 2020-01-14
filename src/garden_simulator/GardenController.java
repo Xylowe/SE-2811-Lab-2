@@ -27,7 +27,7 @@ public class GardenController {
     protected static ArrayList<AbstractFlower> flowers;
     protected static final int width = 900;
     protected static final int height = 700;
-    private static final int TOTAL_FLOWERS = 10;
+    private static final int TOTAL_FLOWERS = 64;
     private static final int TOTAL_BEES = 4;
 
     @FXML
@@ -42,8 +42,8 @@ public class GardenController {
         // note the label has a Z index of 2 so it is drawn above the panel, otherwise it may be displayed "under" the panel and not be visible
         theGarden.setStyle("-fx-background-color: linear-gradient(to bottom right, derive(forestgreen, 20%), derive(forestgreen, -40%));");
         // load image from a file; the file needs to be in the top folder of the project
-        theGarden.setPrefWidth(width);
-        theGarden.setPrefHeight(height);
+        //theGarden.setPrefWidth(width);
+        //theGarden.setPrefHeight(height);
 
         //Creates an array list of Abstract flowers and bees
         flowers = new ArrayList<>();
@@ -52,7 +52,7 @@ public class GardenController {
         //Adds TOTAL_FLOWERS number of flowers to the flowers list, randomly chosen as Good or Killer
         for(int i = 0; i < TOTAL_FLOWERS; i++) {
             if(zeroOrOne() == 0) {
-                flowers.add(new GoodFlower(10, 60));
+                flowers.add(new GoodFlower(10, 100));
             } else {
                 flowers.add(new KillerFlower(10, 30));
             }
