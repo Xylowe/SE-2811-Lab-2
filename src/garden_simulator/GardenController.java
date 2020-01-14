@@ -27,8 +27,8 @@ public class GardenController {
     protected static ArrayList<AbstractFlower> flowers;
     protected static final int width = 900;
     protected static final int height = 700;
-    private static final int TOTAL_FLOWERS = 64;
-    private static final int TOTAL_BEES = 4;
+    private static final int TOTAL_FLOWERS = 80;
+    private static final int TOTAL_BEES = 8;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -52,9 +52,9 @@ public class GardenController {
         //Adds TOTAL_FLOWERS number of flowers to the flowers list, randomly chosen as Good or Killer
         for(int i = 0; i < TOTAL_FLOWERS; i++) {
             if(zeroOrOne() == 0) {
-                flowers.add(new GoodFlower(10, 100));
+                flowers.add(new GoodFlower(20, 100));
             } else {
-                flowers.add(new KillerFlower(10, 30));
+                flowers.add(new KillerFlower(5, 20));
             }
         }
 
@@ -142,7 +142,7 @@ public class GardenController {
                 hitBorder();
                 displayBee(bee);
             }
-            System.out.println("\n\n");
+            //System.out.println("\n");
         } /*else if (keyEvent.getCode() == KeyCode.LEFT) {
             for(AbstractBee bee : bees) {
                 bee.xLocation -= 10.0;

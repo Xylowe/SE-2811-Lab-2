@@ -45,7 +45,7 @@ public class SearchGridBee extends AbstractBee {
         // check flowers to determine if the bee is at one, if so stop on the flower
         for (AbstractFlower flower : GardenController.flowers) {
             double distance = getDistance(flower.getXLocation(), flower.getYLocation());
-            if (distance < moveDistance * 2 && flower.hasNectar()) {
+            if (distance < moveDistance && flower.hasNectar()) {
                 onFlower = true;
             }
         }
