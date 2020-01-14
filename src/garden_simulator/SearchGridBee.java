@@ -86,6 +86,6 @@ public class SearchGridBee extends AbstractBee {
         }
 
         // Loss of energy due to time tick
-        //addEnergy(-2);
+        addEnergy(-2);
     }
 }

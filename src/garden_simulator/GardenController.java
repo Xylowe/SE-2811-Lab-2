@@ -135,13 +135,15 @@ public class GardenController {
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
             for (AbstractBee bee : bees) {
-                //bee.timeProgressed();
-                bee.xLocation += 10.0;
+                System.out.println("Before: " + bee.getEnergy());
+                bee.timeProgressed();
+                System.out.println("After: " + bee.getEnergy() + "\n");
                 collision(bee);
                 hitBorder();
                 displayBee(bee);
             }
-        } else if (keyEvent.getCode() == KeyCode.LEFT) {
+            System.out.println("\n\n");
+        } /*else if (keyEvent.getCode() == KeyCode.LEFT) {
             for(AbstractBee bee : bees) {
                 bee.xLocation -= 10.0;
                 collision(bee);
@@ -162,7 +164,7 @@ public class GardenController {
                 hitBorder();
                 displayBee(bee);
             }
-        }
+        }*/
     }
 
     private void hitBorder() {
@@ -214,12 +216,10 @@ public class GardenController {
             double sameBeeDistance = b.getDistance(bee.getXLocation(), bee.getYLocation(),
                     b.getXLocation(), b.getYLocation());
 
-            System.out.println("Before: " + bee.getEnergy());
             if(distance < collisionDistance && sameBeeDistance != 0.0) {
                 b.addEnergy(-2);
                 bee.addEnergy(-2);
             }
-            System.out.println("After: " + bee.getEnergy() + "\n");
         }
     }
 

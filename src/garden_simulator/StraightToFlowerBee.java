@@ -50,7 +50,6 @@ public class StraightToFlowerBee extends AbstractBee {
                 double ratio = Math.abs(xLocation - flower.getXLocation()) /
                         (Math.abs(yLocation - flower.getYLocation()) +
                                 Math.abs(xLocation - flower.getXLocation()));
-
                 updateLocations((moveDistance * ratio), (moveDistance * (1 - ratio)));
             }
         } else {
