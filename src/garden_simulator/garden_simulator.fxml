@@ -25,7 +25,7 @@
                     <children>
                         <ImageView fx:id="straightBeeImage" disable="true" fitHeight="45.0" fitWidth="50.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../garden_jpgs/bee-1.png" />
+                                <Image url="@../../garden_pngs/bee-1.png" />
                             </image>
                             <viewport>
                                 <Rectangle2D minX="50.0" minY="45.0" />
@@ -33,17 +33,17 @@
                         </ImageView>
                         <ImageView fx:id="goodFlowerImage" disable="true" fitHeight="45.0" fitWidth="50.0" layoutX="11.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../garden_jpgs/aster.png" />
+                                <Image url="@../../garden_pngs/aster.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="badFlowerImage" disable="true" fitHeight="45.0" fitWidth="50.0" layoutX="10.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../garden_jpgs/nightshade.png" />
+                                <Image url="@../../garden_pngs/nightshade.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="gridBeeImage" disable="true" fitHeight="45.0" fitWidth="50.0" layoutX="13.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../garden_jpgs/bee-2.png" />
+                                <Image url="@../../garden_pngs/bee-2.png" />
                             </image>
                         </ImageView>
                         <Label layoutX="57.0" layoutY="149.0" prefHeight="44.0" prefWidth="147.0" text="Flower that removes energy from bees" wrapText="true">

@@ -29,7 +29,7 @@ public class GardenController {
     protected static final int width = 900;
     protected static final int height = 700;
     private static final int TOTAL_FLOWERS = 80;
-    private static final int TOTAL_BEES = 8;
+    private static final int TOTAL_BEES = 20;
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
@@ -49,10 +49,10 @@ public class GardenController {
     public void initialize() {              // executed after scene is loaded but before any methods
 
         // Initializes the key images
-        straightBeeImage.setImage(new Image("file:garden_jpgs/bee-1.png"));
-        gridBeeImage.setImage(new Image("file:garden_jpgs/bee-2.png"));
-        goodFlowerImage.setImage(new Image("file:garden_jpgs/aster.png"));
-        badFlowerImage.setImage(new Image("file:garden_jpgs/nightshade.png"));
+        straightBeeImage.setImage(new Image("file:garden_pngs/bee-1.png"));
+        gridBeeImage.setImage(new Image("file:garden_pngs/bee-2.png"));
+        goodFlowerImage.setImage(new Image("file:garden_pngs/aster.png"));
+        badFlowerImage.setImage(new Image("file:garden_pngs/nightshade.png"));
 
         //Creates an array list of Abstract flowers and bees
         flowers = new ArrayList<>();
