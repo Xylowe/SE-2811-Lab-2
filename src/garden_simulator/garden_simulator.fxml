@@ -21,7 +21,7 @@
     <children>
         <Pane id="theGarden" fx:id="theGarden" minHeight="700.0" minWidth="900.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, derive(forestgreen, 40%), derive(forestgreen, -20%));">
             <children>
-                <AnchorPane layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgrey; -fx-opacity: .95;">
+                <AnchorPane layoutY="486.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="215.0" prefWidth="205.0" style="-fx-background-color: lightgrey; -fx-opacity: .95;">
                     <children>
                         <ImageView fx:id="straightBeeImage" disable="true" fitHeight="45.0" fitWidth="50.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -66,6 +66,7 @@
                                 <Font size="13.0" />
                             </font>
                         </Label>
+                  <Label layoutX="11.0" layoutY="194.0" prefHeight="17.0" prefWidth="182.0" text="* Bee energy level = Bee size" />
                     </children>
                 </AnchorPane>
             </children>

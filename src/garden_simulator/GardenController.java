@@ -114,6 +114,8 @@ public class GardenController {
         if(bee.isDead()) {
             bee.getBeeImage().setVisible(false);
         } else {
+            bee.getBeeImage().setScaleX(bee.getEnergy() / 100);
+            bee.getBeeImage().setScaleY(bee.getEnergy() / 100);
             bee.getBeeImage().setLayoutX(bee.getXLocation());
             bee.getBeeImage().setLayoutY(bee.getYLocation());
         }
@@ -138,38 +140,20 @@ public class GardenController {
     public void onKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.RIGHT) {
             for (AbstractBee bee : bees) {
-                System.out.println("Before: " + bee.getEnergy());
+                System.out.print("Initial Energy: " + bee.getEnergy() + "  \t\t\t");
                 bee.timeProgressed();
-                System.out.println("After: " + bee.getEnergy() + "\n");
                 collision(bee);
+                System.out.print("Energy After Tick: " + bee.getEnergy() + "\n");
                 hitBorder();
                 displayBee(bee);
             }
-            //System.out.println("\n");
-        } /*else if (keyEvent.getCode() == KeyCode.LEFT) {
-            for(AbstractBee bee : bees) {
-                bee.xLocation -= 10.0;
-                collision(bee);
-                hitBorder();
-                displayBee(bee);
-            }
-        } else if (keyEvent.getCode() == KeyCode.DOWN) {
-            for(AbstractBee bee : bees) {
-                bee.yLocation += 10.0;
-                collision(bee);
-                hitBorder();
-                displayBee(bee);
-            }
-        } else if (keyEvent.getCode() == KeyCode.UP) {
-            for (AbstractBee bee : bees) {
-                bee.yLocation -= 10.0;
-                collision(bee);
-                hitBorder();
-                displayBee(bee);
-            }
-        }*/
+            System.out.println("------------------------------------------------------");
+        }
     }
 
+    /**
+     * Keeps the bees inside of the garden
+     */
     private void hitBorder() {
         int yMax = 655; //Bee images are 45 high
         int xMax = 850; //Bee images are 50 wide
@@ -188,7 +172,12 @@ public class GardenController {
         }
     }
 
-    //Bee collides with something
+    /**
+     * This function determines if the given bee collides with a flower or another bee
+     * Then the energies are updated
+     *
+     * @param bee a bee
+     */
     private void collision(AbstractBee bee) {
         double collisionDistance = 16;
         double heightBuffer = 45.0;
@@ -229,6 +218,11 @@ public class GardenController {
         }
     }
 
+    /**
+     * Returns zero or one randomly
+     *
+     * @return - zero or one
+     */
     private int zeroOrOne() {
         return (int) (Math.random() * 2);
     }
