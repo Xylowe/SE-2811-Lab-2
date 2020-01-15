@@ -112,7 +112,7 @@ public class GardenController {
             beeYLocation = theGarden.getHeight() - 10;
 
         if(bee.isDead()) {
-            bee.getBeeImage().setVisible(true);
+            bee.getBeeImage().setVisible(false);
         } else {
             bee.getBeeImage().setLayoutX(bee.getXLocation());
             bee.getBeeImage().setLayoutY(bee.getYLocation());
