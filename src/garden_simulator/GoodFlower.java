@@ -1,7 +1,7 @@
 /*
  * Course: SE2811
  * Winter 2019-2020
- * Lab 2 - The Flowers and the Bees
+ * Lab 4 - The Flowers and the Bees
  * Name: Trenton Bowser and Matt Aleck
  * Created 12/12/2019
  */
