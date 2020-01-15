@@ -8,6 +8,7 @@
 package garden_simulator;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,18 +33,26 @@ public class GardenController {
 
     @FXML
     private Pane theGarden;                 // capture the pane we are drawing on from JavaFX
+    @FXML
+    private ImageView straightBeeImage;
+    @FXML
+    private ImageView gridBeeImage;
+    @FXML
+    private ImageView goodFlowerImage;
+    @FXML
+    private ImageView badFlowerImage;
 
     /**
      * Initializes the window
      */
     @FXML
     public void initialize() {              // executed after scene is loaded but before any methods
-        // for fun, set up a gradient background; could probably do in SceneBuilder as well
-        // note the label has a Z index of 2 so it is drawn above the panel, otherwise it may be displayed "under" the panel and not be visible
-        theGarden.setStyle("-fx-background-color: linear-gradient(to bottom right, derive(forestgreen, 20%), derive(forestgreen, -40%));");
-        // load image from a file; the file needs to be in the top folder of the project
-        //theGarden.setPrefWidth(width);
-        //theGarden.setPrefHeight(height);
+
+        // Initializes the key images
+        straightBeeImage.setImage(new Image("file:garden_jpgs/bee-1.png"));
+        gridBeeImage.setImage(new Image("file:garden_jpgs/bee-2.png"));
+        goodFlowerImage.setImage(new Image("file:garden_jpgs/aster.png"));
+        badFlowerImage.setImage(new Image("file:garden_jpgs/nightshade.png"));
 
         //Creates an array list of Abstract flowers and bees
         flowers = new ArrayList<>();
@@ -67,12 +76,6 @@ public class GardenController {
             }
         }
 
-        //Adds a GoodFlower to flowers
-        //flowers.add(new GoodFlower(10, 60));
-
-        //Adds a KillerFlower to flowers
-        //flowers.add(new KillerFlower(10, 30));
-
         //Displays each flower in flowers
         for (AbstractFlower flower : flowers) {
             flower.getFlowerImage().setPreserveRatio(true);
@@ -80,10 +83,6 @@ public class GardenController {
             theGarden.getChildren().add(flower.getFlowerImage());
             displayFlower(flower);
         }
-
-        //Adds bees to the bee list
-        //bees.add(new StraightToFlowerBee());
-        //bees.add(new SearchGridBee());
 
         // Sets up and displays all bees
         for (AbstractBee bee : bees) {
@@ -112,8 +111,12 @@ public class GardenController {
         else if (theGarden.getHeight() > 0 && beeYLocation > theGarden.getHeight() - 10)
             beeYLocation = theGarden.getHeight() - 10;
 
-        bee.getBeeImage().setLayoutX(bee.getXLocation());
-        bee.getBeeImage().setLayoutY(bee.getYLocation());
+        if(bee.isDead()) {
+            bee.getBeeImage().setVisible(true);
+        } else {
+            bee.getBeeImage().setLayoutX(bee.getXLocation());
+            bee.getBeeImage().setLayoutY(bee.getYLocation());
+        }
     }
 
     /**
@@ -219,7 +222,7 @@ public class GardenController {
             double sameBeeDistance = b.getDistance(bee.getXLocation(), bee.getYLocation(),
                     b.getXLocation(), b.getYLocation());
 
-            if(distance < collisionDistance && sameBeeDistance != 0.0) {
+            if(distance < collisionDistance && sameBeeDistance != 0.0 && !b.isDead()) {
                 b.addEnergy(-2);
                 bee.addEnergy(-2);
             }

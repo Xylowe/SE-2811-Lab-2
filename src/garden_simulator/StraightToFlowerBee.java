@@ -20,7 +20,7 @@ public class StraightToFlowerBee extends AbstractBee {
      */
     public StraightToFlowerBee() {
         super();
-        super.getBeeImage().setImage(new Image("file:garden_jpgs\\bee-1.png"));
+        super.getBeeImage().setImage(new Image("file:garden_jpgs/bee-1.png"));
     }
 
     /**
@@ -59,7 +59,7 @@ public class StraightToFlowerBee extends AbstractBee {
             }
         }
         // Loss of energy due to time tick
-        addEnergy(-2);
+        addEnergy(-1);
     }
 
     /**
